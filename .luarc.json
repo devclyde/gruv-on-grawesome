@@ -1,11 +1,15 @@
 {
-  "workspace.library": [
-    "/usr/share/awesome/lib"
-  ],
-  "diagnostics.globals": [
-    "awesome",
-    "client",
-    "screen",
-    "tag"
-  ]
+    "Lua.diagnostics.disable": [
+        "unbalanced-assignments"
+    ],
+    "diagnostics.globals": [
+        "awesome",
+        "client",
+        "screen",
+        "tag",
+        "yambar"
+    ],
+    "workspace.library": [
+        "/usr/share/awesome/lib"
+    ]
 }
