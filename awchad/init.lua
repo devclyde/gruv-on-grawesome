@@ -1,12 +1,19 @@
+local awful = require('awful')
+
 local CHAD = {}
 local __INTERNAL_CHAD = {
-  beautiful_init = false
+  beautiful_init = false,
+  cached = {}
 }
 
 local beautiful = require('beautiful')
 
 CHAD.__validate_profile = function (profile)
   assert(profile.signals, 'profile signals cannot be nil')
+end
+
+CHAD.__cache_required = function (profile)
+  __INTERNAL_CHAD.cached['__chadrc'] = profile
 end
 
 CHAD.__initialise_beautiful = function (theme)
@@ -42,8 +49,10 @@ CHAD.__initialise_signals = function (signals)
     if _ ~= yambar.table.count_keys(signals) then
       validate(signal)
 
-      if signal.resolve_dependencies then
-        -- TODO!
+      if signal.data.resolve_dependencies then
+        assert(type(signal.data.dependencies) == 'table', '`signal::data->dependencies` must be a `table`')
+
+        signal.data.dependencies = __INTERNAL_CHAD.__resolve_dependencies(signal.data.dependencies)
       end
 
       local host = signal.get_host()
@@ -60,6 +69,44 @@ CHAD.__initialise_signals = function (signals)
       end
     end
   end
+end
+
+CHAD.__initialise_global_keybindings = function (keybindings)
+  for _, group in ipairs(keybindings) do
+    if _ ~= yambar.table.count_keys(keybindings) then
+      assert(type(group.create) == 'function', '`group::create` must be a function')
+
+      for _, keybinding in ipairs(group.create()) do
+        awful.keyboard.append_global_keybinding(keybinding)
+      end
+    end
+  end
+end
+
+CHAD.__initialise_global_mousebindings = function (mousebindings)
+  for _, group in ipairs(mousebindings) do
+    if _ ~= yambar.table.count_keys(mousebindings) then
+      assert(type(group.create) == 'function', '`group::create` must be a function')
+
+      for _, mousebinding in ipairs(group.create()) do
+        awful.mouse.append_client_mousebinding(mousebinding)
+      end
+    end
+  end
+end
+
+__INTERNAL_CHAD.__resolve_dependencies = function (dependencies)
+  assert(type(dependencies) == 'table', '`data::dependencies` must be a table')
+
+  for name, _ in pairs(dependencies) do
+    for cached_name, cached_value in pairs(__INTERNAL_CHAD.cached) do
+      if name == cached_name then
+        dependencies[name] = cached_value
+      end
+    end
+  end
+
+  return dependencies
 end
 
 return CHAD
