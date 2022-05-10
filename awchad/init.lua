@@ -1,7 +1,32 @@
 local CHAD = {}
+local __INTERNAL_CHAD = {
+  beautiful_init = false
+}
+
+local beautiful = require('beautiful')
 
 CHAD.__validate_profile = function (profile)
   assert(profile.signals, 'profile signals cannot be nil')
+end
+
+CHAD.__initialise_beautiful = function (theme)
+  if __INTERNAL_CHAD.beautiful_init == true then
+    yambar.logger.__core_error("cannot override beautiful theme (profile '%s')", AWCHAD_PROFILE)
+    return
+  end
+
+  if theme ~= nil then
+    local ok, result = pcall(beautiful.init, theme)
+
+    if not ok then
+      yambar.logger.__core_error("couldn't initialise beautiful theme (profile '%s')\n\n%s", AWCHAD_PROFILE, result)
+    end
+  else
+    yambar.logger.__core_warn("theme is nil, loading fallback (profile '%s')", AWCHAD_PROFILE)
+    CHAD.__initialise_beautiful(require('awchad.__fallback_theme'))
+  end
+
+  __INTERNAL_CHAD.beautiful_init = true
 end
 
 CHAD.__initialise_signals = function (signals)

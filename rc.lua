@@ -17,6 +17,7 @@ if yambar.filesystem.file_readable(AWCHAD_PROFILE_LOCATION) then
   end
 
   AWCHAD.__validate_profile(result)
+  AWCHAD.__initialise_beautiful(result.ui.theme or nil)
   AWCHAD.__initialise_signals(result.signals)
 else
   yambar.logger.__core_error("could not find chadrc.lua (profile '%s')", AWCHAD_PROFILE)
