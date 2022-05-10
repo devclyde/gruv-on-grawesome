@@ -1,3 +1,0 @@
-[submodule "yambar/__lua_modules/moses"]
-	path = yambar/__lua_modules/moses
-	url = https://github.com/Yonaba/Moses.git
