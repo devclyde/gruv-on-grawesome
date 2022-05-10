@@ -4,6 +4,13 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 
 local M = {}
 
+M.data = {
+  resolve_dependencies = true,
+  dependencies = {
+    ['__widget_main_menu'] = {}
+  }
+}
+
 M.create = function ()
   return {
     awful.key({ AWCHAD_MODIFIER }, 's',
@@ -15,7 +22,7 @@ M.create = function ()
     ),
     awful.key({ AWCHAD_MODIFIER }, 'w',
       function ()
-        -- mymainmenu:show()
+        M.data.dependencies.__widget_main_menu:show()
       end,
       {
         description = 'show main menu',

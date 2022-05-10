@@ -5,11 +5,22 @@ local awesome_menu = require('profiles.default.widgets.awesome-menu')
 
 local M = {}
 
+M.data = {
+  resolve_dependencies = true,
+  dependencies = {
+    ['__widget_awesome_menu'] = {}
+  },
+  injection = {
+    name = '__widget_main_menu',
+    type = 'widget'
+  },
+}
+
 M.create = function ()
   return awful.menu({
     items = {
       {
-        "awesome", awesome_menu.create(),
+        "awesome", M.data.dependencies.__widget_awesome_menu,
         beautiful.awesome_icon
       },
       {

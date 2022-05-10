@@ -4,6 +4,12 @@ M.ui = {
   theme = require('profiles.default.themes.awesome'),
 }
 
+M.cached = {
+  require('profiles.default.widgets.awesome-menu'),
+  require('profiles.default.widgets.main-menu'),
+  require('profiles.default.widgets.launcher'),
+}
+
 M.signals = {
   require('profiles.default.signals.naughty.display-error'),
   require('profiles.default.signals.naughty.display'),

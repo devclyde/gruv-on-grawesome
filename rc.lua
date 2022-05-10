@@ -19,6 +19,7 @@ if yambar.filesystem.file_readable(AWCHAD_PROFILE_LOCATION) then
 
   AWCHAD.__validate_profile(result)
   AWCHAD.__cache_required(result)
+  AWCHAD.__create_dependencies(result.cached)
   AWCHAD.__initialise_beautiful(result.ui.theme or nil)
   AWCHAD.__initialise_signals(result.signals)
   AWCHAD.__initialise_global_keybindings(result.mappings.global.keyboard or {})

@@ -3,6 +3,13 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 
 local M = {}
 
+M.data = {
+  injection = {
+    name = '__widget_awesome_menu',
+    type = 'widget'
+  }
+}
+
 M.create = function ()
   return {
     { "hotkeys",
