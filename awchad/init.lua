@@ -131,6 +131,10 @@ CHAD.__initialise_global_mousebindings = function (mousebindings)
   end
 end
 
+CHAD.__finish = function ()
+  awesome.emit_signal('awchad::post_setup')
+end
+
 __INTERNAL_CHAD.__resolve_dependencies = function (dependencies)
   assert(type(dependencies) == 'table', '`data::dependencies` must be a table')
 

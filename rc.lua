@@ -24,6 +24,7 @@ if yambar.filesystem.file_readable(AWCHAD_PROFILE_LOCATION) then
   AWCHAD.__initialise_signals(result.signals)
   AWCHAD.__initialise_global_keybindings(result.mappings.global.keyboard or {})
   AWCHAD.__initialise_global_mousebindings(result.mappings.global.mouse or {})
+  AWCHAD.__finish()
 else
   yambar.logger.__core_error("could not find chadrc.lua (profile '%s')", AWCHAD_PROFILE)
 end
