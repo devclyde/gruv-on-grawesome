@@ -7,7 +7,7 @@ M.data = {
 }
 
 M.get_host = function()
-  return ruled
+  return ruled.notification
 end
 
 M.get_address = function()
