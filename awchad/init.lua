@@ -125,7 +125,7 @@ CHAD.__initialise_global_mousebindings = function (mousebindings)
       end
 
       for _, mousebinding in ipairs(group.create()) do
-        awful.mouse.append_client_mousebinding(mousebinding)
+        awful.mouse.append_global_mousebinding(mousebinding)
       end
     end
   end

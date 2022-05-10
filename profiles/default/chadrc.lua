@@ -1,3 +1,5 @@
+require('awful.autofocus')
+
 local M = {}
 
 M.ui = {
@@ -17,9 +19,12 @@ M.signals = {
   require('profiles.default.signals.tag.default-layout'),
 
   require('profiles.default.signals.ruled.notification.rules'),
+  require('profiles.default.signals.ruled.client.rules'),
 
   require('profiles.default.signals.client.default-keybindings'),
   require('profiles.default.signals.client.default-mousebindings'),
+  require('profiles.default.signals.client.sloppy-focus'),
+  require('profiles.default.signals.client.titlebars'),
 
   require('profiles.default.signals.screen.wallpaper'),
   require('profiles.default.signals.screen.desktop-decoration')

@@ -44,7 +44,7 @@ M.on_trigger = function (screen)
           tag:view_only()
         end
       ),
-      awful.button({ 'Mod4' }, 1,
+      awful.button({ AWCHAD_MODIFIER }, 1,
         function(tag)
           if client.focus then
             client.focus:move_to_tag(tag)
@@ -52,7 +52,7 @@ M.on_trigger = function (screen)
         end
       ),
       awful.button({ }, 3, awful.tag.viewtoggle),
-      awful.button({ 'Mod4' }, 3,
+      awful.button({ AWCHAD_MODIFIER }, 3,
         function(tag)
           if client.focus then
             client.focus:toggle_tag(tag)
@@ -60,8 +60,8 @@ M.on_trigger = function (screen)
         end
       ),
       awful.button({ }, 4,
-        function(t)
-          awful.tag.viewprev(t.screen)
+        function(tag)
+          awful.tag.viewprev(tag.screen)
         end
       ),
       awful.button({ }, 5,
