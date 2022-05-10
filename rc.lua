@@ -21,3 +21,12 @@ if yambar.filesystem.file_readable(AWCHAD_PROFILE_LOCATION) then
 else
   yambar.logger.__core_error("could not find chadrc.lua (profile '%s')", AWCHAD_PROFILE)
 end
+
+---@type table
+awesome = awesome
+---@type table
+client = client
+---@type table
+screen = screen
+---@type table
+tag = tag
