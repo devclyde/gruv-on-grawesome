@@ -1,0 +1,10 @@
+{
+  "general": {
+    "modifier": "Mod4",
+    "garbageCollector": true
+  },
+  "apps": {
+    "terminal": "alacritty",
+    "editor": "nvim"
+  }
+}

@@ -1,6 +1,6 @@
 yambar = require('yambar')
 
-AWCHAD_PROFILE = os.getenv('AWCHAD_PROFILE') or 'default'
+AWCHAD_PROFILE = os.getenv('AWCHAD_PROFILE') or 'gog'
 AWCHAD_MODIFIER = os.getenv('AWCHAD_MODIFIER') or 'Mod4'
 AWCHAD_PROFILE_LOCATION = yambar.filesystem.get_configuration_dir() .. '/profiles/' .. AWCHAD_PROFILE .. '/chadrc.lua'
 
